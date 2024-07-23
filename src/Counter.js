@@ -4,7 +4,7 @@ import { useState } from "react";
 export const Counter = (props) => {
 
   const handleIncrement = () => {
-    props.onChange(props.value + 1);
+    props.value === 5 ? props.onChange(5) : props.onChange(props.value + 1)
   }
 
   const handleDecrement = () => {
