@@ -1,31 +1,26 @@
-import React, {useState} from 'react';
+import React from 'react';
+import { useState } from "react";
 
-export const Counter = () => {
+export const Counter = (props) => {
 
-  const [counter, setCounter] = useState(0);
+  const handleIncrement = () => {
+    props.onChange(props.value + 1);
+  }
 
-  const handleOperation = (operation) => {
-    switch (operation) {
-      case "increment":
-        setCounter(counter + 1);
-        break;
-      case "decrement":
-        counter === 0 ? setCounter(0) : setCounter(counter - 1)
-        break;
-      case "reset":
-        setCounter(0);
-        break;
-      default:
-        break
-    }
-  };
+  const handleDecrement = () => {
+    props.value === 0 ? props.onChange(0) : props.onChange(props.value - 1)
+  }
+
+  const handleReset = () => {
+    props.onChange(0);
+  }
 
   return (
     <div>
-      <p>Counter: {counter}</p>
-      <button onClick={() => handleOperation("decrement")}>-1</button>
-      <button onClick={() => handleOperation("increment")}>+1</button>
-      <button onClick={() => handleOperation("reset")}>Reset</button>
+      <p>{props.tag}: {props.value} </p>
+      <button onClick={handleDecrement}>-1</button>
+      <button onClick={handleIncrement}>+1</button>
+      <button onClick={handleReset}>Reset</button>
     </div>
   )
 }
