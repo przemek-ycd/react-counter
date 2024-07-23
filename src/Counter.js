@@ -1,27 +1,27 @@
 import React from 'react';
 import { useState } from "react";
 
-export const Counter = (props) => {
+export const Counter = ({value, maxValue, onChange, tag}) => {
 
   const handleIncrement = () => {
-    props.value === props.maxValue ? props.onChange(props.maxValue) : props.onChange(props.value + 1)
+    value === maxValue ? onChange(maxValue) : onChange(value + 1)
   }
 
   const handleDecrement = () => {
-    props.value === 0 ? props.onChange(0) : props.onChange(props.value - 1)
+    value === 0 ? onChange(0) : onChange(value - 1)
   }
 
   const handleInputChange = (event) => {
     const value = event.target.value.replace(/\+|-/ig, '');
-    value <= props.maxValue ? props.onChange(Number(value)) : props.onChange(props.maxValue)
+    value <= maxValue ? onChange(Number(value)) : onChange(maxValue)
   }
 
   return (
     <div>
-      <p>{props.tag}: {props.value} </p>
-      <input type='text' value={props.value} onChange={handleInputChange} />
-      <button onClick={handleDecrement} disabled={props.value === 0}>-1</button>
-      <button onClick={handleIncrement} disabled={props.value === props.maxValue}>+1</button>
+      <p>{tag}: {value} </p>
+      <input type='text' value={value} onChange={handleInputChange} />
+      <button onClick={handleDecrement} disabled={value === 0}>-1</button>
+      <button onClick={handleIncrement} disabled={value === maxValue}>+1</button>
     </div>
   )
 }
