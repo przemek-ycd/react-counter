@@ -18,8 +18,8 @@ export const Counter = (props) => {
   return (
     <div>
       <p>{props.tag}: {props.value} </p>
-      <button onClick={handleDecrement}>-1</button>
-      <button onClick={handleIncrement}>+1</button>
+      <button onClick={handleDecrement} disabled={props.value === 0}>-1</button>
+      <button onClick={handleIncrement} disabled={props.value === 5}>+1</button>
       <button onClick={handleReset}>Reset</button>
     </div>
   )
