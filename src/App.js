@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import { Form } from "./Form/Form";
 import { Results } from "./Results/Results";
@@ -12,6 +12,7 @@ function App() {
   const [inputCheckboxTermAndConditions, setInputCheckboxTermAndConditions] = useState(false);
   const [inputRadioYesOrNoTravelingForWork, setInputRadioYesOrNoTravelingForWork] = useState(false);
   const [changeViewFormOrResults, setChangeViewFormOrResults] = useState(false);
+  const [initialAdultCounter, setInitialAdultCounter] = useState(0);
 
   const handleBookNowClick  = () => {
     setChangeViewFormOrResults(true);
@@ -20,7 +21,14 @@ function App() {
   const handleBackClick  = () => {
     setInputCheckboxTermAndConditions(false);
     setChangeViewFormOrResults(false);
+    setInitialAdultCounter(adultCount);
   };
+
+  useEffect(() => {
+    if (initialAdultCounter !== 0 && initialAdultCounter !== adultCount){
+      console.log("User changed adult counter value. New value:", adultCount);
+    }
+  }, [initialAdultCounter, adultCount]);
 
   return (
     <div className="App">
