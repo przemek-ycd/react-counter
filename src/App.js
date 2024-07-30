@@ -9,6 +9,7 @@ function App() {
   const [inputValueLocation, setInputValueLocation] = useState();
   const [inputCheckboxChildrenOrAnimals, setInputCheckboxChildrenOrAnimals] = useState(false);
   const [inputCheckboxTermAndConditions, setInputCheckboxTermAndConditions] = useState(false);
+  const [inputRadioYesOrNoTravelingForWork, setInputRadioYesOrNoTravelingForWork] = useState(false);
 
   const handleInputValueLocation = (event) => {
     setInputValueLocation(event.target.value)
@@ -22,6 +23,9 @@ function App() {
     setInputCheckboxTermAndConditions(event.target.checked)
   }
 
+  const handleOptionsTravelingForWork = event => {
+    setInputRadioYesOrNoTravelingForWork(event.target.value)
+  }
 
   return (
     <div className="App">
@@ -36,6 +40,9 @@ function App() {
 
           <input type="text" value={inputValueLocation} onChange={handleInputValueLocation} placeholder="Where are you going today?"/>
           <input type="checkbox" name="termsAndConditions" checked={inputCheckboxTermAndConditions} onChange={handleInputCheckboxTermAndConditions}/>
+          <label for={"travelingForWork"}>Are you traveling for work?</label>
+          <input type="radio" value="yes" checked={inputRadioYesOrNoTravelingForWork === "yes"} onChange={handleOptionsTravelingForWork}/>Yes
+          <input type="radio" value="no" checked={inputRadioYesOrNoTravelingForWork === "no"}  onChange={handleOptionsTravelingForWork}/>No
           <label for="termsAndConditions">Do you accept terms and conditions?</label>
           <input type="button" value="Book now" disabled={!inputCheckboxTermAndConditions}/>
       </header>
