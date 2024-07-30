@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./App.css";
-import { Counter } from "./Counter";
+import { Form } from "./Form";
+import { Results } from "./Results";
 
 function App() {
   const [adultCount, setAdultCount] = useState(0);
@@ -10,41 +11,46 @@ function App() {
   const [inputCheckboxChildrenOrAnimals, setInputCheckboxChildrenOrAnimals] = useState(false);
   const [inputCheckboxTermAndConditions, setInputCheckboxTermAndConditions] = useState(false);
   const [inputRadioYesOrNoTravelingForWork, setInputRadioYesOrNoTravelingForWork] = useState(false);
+  const [changeViewFormOrResults, setChangeViewFormOrResults] = useState(false);
 
-  const handleInputValueLocation = (event) => {
-    setInputValueLocation(event.target.value)
-  }
+  const handleBookNowClick  = () => {
+    setChangeViewFormOrResults(true);
+  };
 
-  const handleInputCheckboxChildrenOrAnimals = (event) => {
-    setInputCheckboxChildrenOrAnimals(event.target.checked)
-  }
-
-  const handleInputCheckboxTermAndConditions = (event) => {
-    setInputCheckboxTermAndConditions(event.target.checked)
-  }
-
-  const handleOptionsTravelingForWork = event => {
-    setInputRadioYesOrNoTravelingForWork(event.target.value)
-  }
+  const handleBackClick  = () => {
+    setInputCheckboxTermAndConditions(false);
+    setChangeViewFormOrResults(false);
+  };
 
   return (
     <div className="App">
       <header>
-        <p>Total passengers: {adultCount + childrenCount}</p>
-          <Counter onChange={setAdultCount} value={adultCount} maxValue={8} tag="adult"/>
-          <input type="checkbox" checked={inputCheckboxChildrenOrAnimals} onChange={handleInputCheckboxChildrenOrAnimals}/> Are you traveling with children or animals?
-          { inputCheckboxChildrenOrAnimals && <> 
-            <Counter onChange={setChildrenCount} value={childrenCount} maxValue={4} tag="children"/>
-            <Counter onChange={setAnimalsCount} value={animalsCount} maxValue={2} tag="animals"/>
-          </>}
 
-          <input type="text" value={inputValueLocation} onChange={handleInputValueLocation} placeholder="Where are you going today?"/>
-          <input type="checkbox" name="termsAndConditions" checked={inputCheckboxTermAndConditions} onChange={handleInputCheckboxTermAndConditions}/>
-          <label for={"travelingForWork"}>Are you traveling for work?</label>
-          <input type="radio" value="yes" checked={inputRadioYesOrNoTravelingForWork === "yes"} onChange={handleOptionsTravelingForWork}/>Yes
-          <input type="radio" value="no" checked={inputRadioYesOrNoTravelingForWork === "no"}  onChange={handleOptionsTravelingForWork}/>No
-          <label for="termsAndConditions">Do you accept terms and conditions?</label>
-          <input type="button" value="Book now" disabled={!inputCheckboxTermAndConditions}/>
+          <div>
+            { changeViewFormOrResults ? (
+              <Results 
+                location={inputValueLocation} 
+                totalPass={adultCount + childrenCount} 
+                adultCount={adultCount} 
+                childrenCount={childrenCount} 
+                animalsCount={animalsCount} 
+                travelingWork={inputRadioYesOrNoTravelingForWork === "yes" ? "" : "not"}
+                onBackClick={handleBackClick}
+              />
+            ) : (
+              <Form
+                adultCount={adultCount} setAdultCount={setAdultCount} 
+                childrenCount={childrenCount} setChildrenCount={setChildrenCount} 
+                animalsCount={animalsCount} setAnimalsCount={setAnimalsCount} 
+                inputValueLocation={inputValueLocation} setInputValueLocation={setInputValueLocation} 
+                inputCheckboxChildrenOrAnimals={inputCheckboxChildrenOrAnimals} setInputCheckboxChildrenOrAnimals={setInputCheckboxChildrenOrAnimals} 
+                inputCheckboxTermAndConditions={inputCheckboxTermAndConditions} setInputCheckboxTermAndConditions={setInputCheckboxTermAndConditions} 
+                inputRadioYesOrNoTravelingForWork={inputRadioYesOrNoTravelingForWork} setInputRadioYesOrNoTravelingForWork={setInputRadioYesOrNoTravelingForWork}
+                onBookNowClick={handleBookNowClick}
+              />
+            )
+            }
+          </div>
       </header>
     </div>
   );
