@@ -1,4 +1,5 @@
-import { Counter } from "./Counter";
+import { Counter } from "../Counter/Counter";
+import formStyles from './form.module.css';
 
 export const Form = ({ 
     adultCount, setAdultCount, 
@@ -10,8 +11,6 @@ export const Form = ({
     inputRadioYesOrNoTravelingForWork, setInputRadioYesOrNoTravelingForWork,
     onBookNowClick 
   }) => {
-
-
 
     const handleInputValueLocation = (event) => {
         setInputValueLocation(event.target.value)
@@ -30,9 +29,9 @@ export const Form = ({
     }
 
     return (
-        <div>
-            <div>
-                <p>
+        <div className={formStyles.divForms}>
+            <div className={formStyles.divTotalPassengers}>
+                <p className={formStyles.paragraphTotalPassengers}>
                     Total passengers: {adultCount + childrenCount}
                 </p>
             </div>
@@ -45,24 +44,38 @@ export const Form = ({
             />
 
             <div>
-                <input 
+                <input
+                    className={formStyles.inputCheckboxAnimalsOrChildren} 
                     type="checkbox" checked={inputCheckboxChildrenOrAnimals} 
                     onChange={handleInputCheckboxChildrenOrAnimals}
                 />
 
                 <label 
+                    className={formStyles.labelCheckboxAnimalsOrChildren} 
                     for="travelingChildrenOrAnimals">
                         Are you traveling with children or animals?
                 </label>
 
                 { inputCheckboxChildrenOrAnimals && <> 
-                    <Counter onChange={setChildrenCount} value={childrenCount} maxValue={4} tag="children"/>
-                    <Counter onChange={setAnimalsCount} value={animalsCount} maxValue={2} tag="animals"/>
+                    <Counter 
+                        onChange={setChildrenCount} 
+                        value={childrenCount} 
+                        maxValue={4} 
+                        tag="children"
+                    />
+
+                    <Counter 
+                        onChange={setAnimalsCount} 
+                        value={animalsCount}
+                        maxValue={2} 
+                        tag="animals"
+                    />
                 </>}
             </div>
 
             <div>
                 <input 
+                    className={formStyles.inputLocation} 
                     type="text" 
                     value={inputValueLocation} 
                     onChange={handleInputValueLocation} 
@@ -72,6 +85,7 @@ export const Form = ({
 
             <div>
                 <label 
+                    className={formStyles.labelTravelingForWork} 
                     for="travelingForWork">
                         Are you traveling for work?
                 </label>
@@ -84,6 +98,7 @@ export const Form = ({
                 />
 
                 <label 
+                    className={formStyles.labelTravelingForWorkYesOrNo} 
                     for="yes">
                         Yes
                 </label>
@@ -96,6 +111,7 @@ export const Form = ({
                 />
 
                 <label 
+                    className={formStyles.labelTravelingForWorkYesOrNo} 
                     for="no">
                         No
                 </label>
@@ -103,7 +119,8 @@ export const Form = ({
             </div>
 
             <div>
-                <input 
+                <input
+                    className={formStyles.inputTermsAndConditions} 
                     type="checkbox" 
                     name="termsAndConditions" 
                     checked={inputCheckboxTermAndConditions} 
@@ -111,12 +128,14 @@ export const Form = ({
                 />
 
                 <label 
+                    className={formStyles.labelTermsAndConditions} 
                     for="termsAndConditions">
                         Do you accept terms and conditions?
                 </label>
 
                 <div>
                     <input 
+                        className={formStyles.inputButtonBookNow} 
                         type="button" 
                         value="Book now" 
                         disabled={!inputCheckboxTermAndConditions}

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./App.css";
-import { Form } from "./Form";
-import { Results } from "./Results";
+import { Form } from "./Form/Form";
+import { Results } from "./Results/Results";
 
 function App() {
   const [adultCount, setAdultCount] = useState(0);

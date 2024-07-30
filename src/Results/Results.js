@@ -1,4 +1,5 @@
 import React from 'react';
+import resultsStyles from './results.module.css';
 
 export const Results = ({
     location, 
@@ -11,26 +12,27 @@ export const Results = ({
 }) => {
 
     return (
-        <div>
-            <div>
-                <p>
+        <div className={resultsStyles.divResults}>
+            <div className={resultsStyles.divSummaryResults}>
+                <p className={resultsStyles.summaryResults}>
                     Summary:
                 </p>
             </div>
 
-            <p>
+            <p className={resultsStyles.paragraphResults}>
                 Location: {location}
             </p>
 
-            <p>
+            <p className={resultsStyles.paragraphResults}>
                 Travelers: {totalPass} total ({adultCount} adults, {childrenCount} children) and {animalsCount} animals
             </p>
 
-            <p>
+            <p className={resultsStyles.paragraphResults}>
                 You're {travelingWork} traveling for work
             </p>
 
-            <input 
+            <input
+                className={resultsStyles.buttonBackResults} 
                 type="button" 
                 value="Back"
                 onClick={onBackClick}
