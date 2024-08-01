@@ -1,5 +1,6 @@
 import React from 'react';
 import counterStyles from './counter.module.css';
+import TextField from '@mui/material/TextField';
 
 export const Counter = ({
     value, 
@@ -23,11 +24,33 @@ export const Counter = ({
 
   return (
     <div className={counterStyles.counterDiv}>
-      <input
-        className={counterStyles.counterInput} 
-        type='text' 
+
+      <TextField 
+        id="outlined-basic" 
         value={value} 
-        onChange={handleInputChange} 
+        variant="outlined"
+        onChange={handleInputChange}
+        sx={{
+          margin: 2,
+          width: '70%',
+          '& .MuiInputBase-input': {
+            textAlign: 'center',
+            padding: 1
+          },
+          '& .MuiOutlinedInput-root': {
+            '&:hover fieldset': {
+              borderColor: '#59abe3',
+            },
+            '&.Mui-focused fieldset': {
+              borderColor: '#59abe3',
+            },
+            '&.Mui-focused.MuiInputBase-root': {
+              '& input': {
+                borderColor: '#59abe3',
+              },
+            },
+          }
+        }}
       />
 
       <button

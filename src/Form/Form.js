@@ -1,5 +1,13 @@
 import { Counter } from "../Counter/Counter";
 import formStyles from './form.module.css';
+import TextField from '@mui/material/TextField';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
+import RadioGroup from '@mui/material/RadioGroup';
+import Radio from '@mui/material/Radio';
+import Button from '@mui/material/Button';
 
 export const Form = ({ 
     adultCount, setAdultCount, 
@@ -44,17 +52,19 @@ export const Form = ({
             />
 
             <div>
-                <input
-                    className={formStyles.inputCheckboxAnimalsOrChildren} 
-                    type="checkbox" checked={inputCheckboxChildrenOrAnimals} 
-                    onChange={handleInputCheckboxChildrenOrAnimals}
+                <FormControlLabel 
+                    control={<Checkbox 
+                        sx={{ '& .MuiSvgIcon-root': { fontSize: 20 } }}
+                        checked={inputCheckboxChildrenOrAnimals} 
+                        onChange={handleInputCheckboxChildrenOrAnimals}
+                    />} 
+                    label="Are you travelling with children or animals?" 
+                    sx={{
+                        '& .MuiFormControlLabel-label': {
+                            fontSize: '1.5rem',
+                        },  
+                    }}
                 />
-
-                <label 
-                    className={formStyles.labelCheckboxAnimalsOrChildren} 
-                    for="travelingChildrenOrAnimals">
-                        Are you traveling with children or animals?
-                </label>
 
                 { inputCheckboxChildrenOrAnimals && <> 
                     <Counter 
@@ -74,73 +84,108 @@ export const Form = ({
             </div>
 
             <div>
-                <input 
-                    className={formStyles.inputLocation} 
-                    type="text" 
-                    value={inputValueLocation} 
+                <TextField 
+                    value={inputValueLocation}
                     onChange={handleInputValueLocation} 
-                    placeholder="Where are you going today?"
+                    id="outlined-basic" 
+                    label="Where are you going today?" 
+                    variant="outlined"
+                    sx={{
+                        margin: 2,
+                        width: '95%',
+                        '& .MuiOutlinedInput-root': {
+                            '&:hover fieldset': {
+                                borderColor: '#59abe3',
+                            },
+                            '&.Mui-focused fieldset': {
+                                borderColor: '#59abe3',
+                            },
+                            '&.Mui-focused.MuiInputBase-root': {
+                                '& input': {
+                                    borderColor: '#59abe3',
+                                },
+                            },
+                        }
+                    }}
                 />
+
             </div>
 
             <div>
-                <label 
-                    className={formStyles.labelTravelingForWork} 
-                    for="travelingForWork">
+
+                <FormControl>
+                    <FormLabel 
+                        id="demo-row-radio-buttons-group-label"
+                        sx={{
+                            fontSize: '1.5rem',
+                            color: '#333',
+                        }}>
                         Are you traveling for work?
-                </label>
-
-                <input 
-                    type="radio" 
-                    value="yes" 
-                    checked={inputRadioYesOrNoTravelingForWork === "yes"} 
-                    onChange={onOptionChange}
-                />
-
-                <label 
-                    className={formStyles.labelTravelingForWorkYesOrNo} 
-                    for="yes">
-                        Yes
-                </label>
-
-                <input 
-                    type="radio" 
-                    value="no" 
-                    checked={inputRadioYesOrNoTravelingForWork === "no"} 
-                    onChange={onOptionChange}
-                />
-
-                <label 
-                    className={formStyles.labelTravelingForWorkYesOrNo} 
-                    for="no">
-                        No
-                </label>
+                    </FormLabel>
+                    <RadioGroup
+                        row
+                        aria-labelledby="demo-row-radio-buttons-group-label"
+                        name="row-radio-buttons-group"
+                        sx={{
+                            justifyContent: 'center', 
+                        }}>
+                        <FormControlLabel 
+                            value="yes" 
+                            control={<Radio 
+                                value="yes" 
+                                checked={inputRadioYesOrNoTravelingForWork === "yes"} 
+                                onChange={onOptionChange}
+                                sx={{ '& .MuiSvgIcon-root': { fontSize: 20 } }}
+                            />} 
+                            label="Yes" />
+                        <FormControlLabel 
+                            value="no" 
+                            control={<Radio 
+                                value="no" 
+                                checked={inputRadioYesOrNoTravelingForWork === "no"} 
+                                onChange={onOptionChange}
+                                sx={{'& .MuiSvgIcon-root': { fontSize: 20 } }}
+                            />} 
+                            label="No" />
+                    </RadioGroup>
+                </FormControl>
 
             </div>
 
             <div>
-                <input
-                    className={formStyles.inputTermsAndConditions} 
-                    type="checkbox" 
-                    name="termsAndConditions" 
-                    checked={inputCheckboxTermAndConditions} 
-                    onChange={handleInputCheckboxTermAndConditions}
-                />
 
-                <label 
-                    className={formStyles.labelTermsAndConditions} 
-                    for="termsAndConditions">
-                        Do you accept terms and conditions?
-                </label>
+                <FormControlLabel 
+                    control={<Checkbox 
+                        sx={{ '& .MuiSvgIcon-root': { fontSize: 20 } }}
+                        checked={inputCheckboxTermAndConditions} 
+                        onChange={handleInputCheckboxTermAndConditions}
+                    />} 
+                    label="Do you accept terms and conditions?" 
+                    sx={{
+                        '& .MuiFormControlLabel-label': {
+                            fontSize: '1.5rem',
+                        },  
+                    }}
+                />
 
                 <div>
-                    <input 
-                        className={formStyles.inputButtonBookNow} 
-                        type="button" 
-                        value="Book now" 
+
+                    <Button 
+                        variant="contained"
                         disabled={!inputCheckboxTermAndConditions}
                         onClick={onBookNowClick}
-                    />
+                        sx={{
+                            fontSize: '1.2rem',
+                            marginTop: '1rem',
+                            backgroundColor: '#59abe3',
+                            '&:hover': {
+                                backgroundColor: '#146ba5', 
+                            },
+                        }}
+                    >
+                        Book now
+                    </Button>
+
                 </div> 
 
             </div>

@@ -4,19 +4,6 @@
   align-items: center;
 }
 
-.counterInput {
-  width: 50%;
-  font-size: 1rem;
-  text-align: center;
-  padding: 5px 15px;
-  margin: 0.5rem;
-  border: 1px solid #146ba5;
-  background-color: #ffffff;
-  color: #333;
-  border-radius: 5px;
-  transition: 0.3s all ease;
-}
-
 .counterParagraph {
   text-align: left;
   width: 35%;
