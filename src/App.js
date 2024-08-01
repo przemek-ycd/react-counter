@@ -1,13 +1,60 @@
+import { useState, useEffect } from "react";
 import "./App.css";
-import { Counter } from "./Counter";
+import { Form } from "./Form/Form";
+import { Results } from "./Results/Results";
 
 function App() {
+  const [adultCount, setAdultCount] = useState(0);
+  const [childrenCount, setChildrenCount] = useState(0);
+  const [animalsCount, setAnimalsCount] = useState(0);
+  const [inputValueLocation, setInputValueLocation] = useState();
+  const [inputCheckboxChildrenOrAnimals, setInputCheckboxChildrenOrAnimals] = useState(false);
+  const [inputCheckboxTermAndConditions, setInputCheckboxTermAndConditions] = useState(false);
+  const [inputRadioYesOrNoTravelingForWork, setInputRadioYesOrNoTravelingForWork] = useState(false);
+  const [changeViewFormOrResults, setChangeViewFormOrResults] = useState(false);
+
+  const handleBookNowClick  = () => {
+    setChangeViewFormOrResults(true);
+  };
+
+  const handleBackClick  = () => {
+    setInputCheckboxTermAndConditions(false);
+    setChangeViewFormOrResults(false);
+  };
+
+  useEffect(() => {
+      console.log("User changed adult counter value. New value:", adultCount);
+  }, [adultCount, childrenCount, animalsCount]);
+
   return (
     <div className="App">
       <header>
-        <p>
-          <Counter />
-        </p>
+
+          <div>
+            { changeViewFormOrResults ? (
+              <Results 
+                location={inputValueLocation} 
+                totalPass={adultCount + childrenCount} 
+                adultCount={adultCount} 
+                childrenCount={childrenCount} 
+                animalsCount={animalsCount} 
+                travelingWork={inputRadioYesOrNoTravelingForWork === "yes" ? "" : "not"}
+                onBackClick={handleBackClick}
+              />
+            ) : (
+              <Form
+                adultCount={adultCount} setAdultCount={setAdultCount} 
+                childrenCount={childrenCount} setChildrenCount={setChildrenCount} 
+                animalsCount={animalsCount} setAnimalsCount={setAnimalsCount} 
+                inputValueLocation={inputValueLocation} setInputValueLocation={setInputValueLocation} 
+                inputCheckboxChildrenOrAnimals={inputCheckboxChildrenOrAnimals} setInputCheckboxChildrenOrAnimals={setInputCheckboxChildrenOrAnimals} 
+                inputCheckboxTermAndConditions={inputCheckboxTermAndConditions} setInputCheckboxTermAndConditions={setInputCheckboxTermAndConditions} 
+                inputRadioYesOrNoTravelingForWork={inputRadioYesOrNoTravelingForWork} setInputRadioYesOrNoTravelingForWork={setInputRadioYesOrNoTravelingForWork}
+                onBookNowClick={handleBookNowClick}
+              />
+            )
+            }
+          </div>
       </header>
     </div>
   );

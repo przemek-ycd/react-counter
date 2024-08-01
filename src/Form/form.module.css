@@ -1,0 +1,39 @@
+.divForms > * {
+  margin-bottom: 1.5rem;
+}
+
+.divForms {
+  border: 2px solid #59abe3;
+  border-radius: 5px;
+  padding-bottom: 1rem;
+}
+
+/* total passengers */
+.divTotalPassengers {
+  background: linear-gradient(115deg, #59abe3, #146ba5);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+  text-align: center;
+  color: #fff;
+  margin-bottom: 2rem;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.paragraphTotalPassengers {
+  font-weight: 300;
+  padding: 1.5rem;
+  font-size: 1.5rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}

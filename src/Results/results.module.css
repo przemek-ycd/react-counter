@@ -1,0 +1,38 @@
+.divSummaryResults {
+  background-color: #59abe3;
+  text-align: left;
+  color: #fff;
+  margin-bottom: 2rem;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.summaryResults {
+  font-weight: 300;
+  padding: 1.5rem;
+  font-size: 1.5rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.divResults {
+  border: 2px solid #59abe3;
+  border-radius: 5px;
+  padding-bottom: 1rem;
+}
+
+.paragraphResults {
+  font-size: 18px;
+  text-align: left;
+  margin: 1rem;
+}
