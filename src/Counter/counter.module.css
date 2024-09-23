@@ -1,0 +1,44 @@
+.counterDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.counterParagraph {
+  text-align: left;
+  width: 35%;
+  font-size: 1rem;
+  margin: 0.5rem;
+  color: #333;
+  font-weight: 400;
+}
+
+.button {
+  font-size: 1rem;
+  text-align: center;
+  padding: 5px 15px;
+  margin: 0.5rem;
+  border: 1px solid #146ba5;
+  background-color: #ffffff;
+  color: #333;
+  border-radius: 5px;
+  transition: 0.3s all ease;
+  width: 10%;
+}
+
+.button:disabled {
+  opacity: 0.4;
+}
+
+.button:disabled:hover {
+  background-color: #f1f1f1;
+  color: #333;
+  border: 1px solid #146ba5;
+}
+
+.button:hover {
+  cursor: pointer;
+  background-color: #59abe3;
+  border: 1px solid #59abe3;
+  color: #fff;
+}
